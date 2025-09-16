@@ -53,8 +53,7 @@ Console.WriteLine("Hello, World!");
 //{
 //    public int[] TwoSum(int[] nums, int target)
 //    {
-//        // Use a dictionary to store value and its index
-//        var dict = new Dictionary<int, int>();
+//        Dictionary<int, int> dict = new Dictionary<int, int>();
 //        for (int i = 0; i < nums.Length; i++)
 //        {
 //            int complement = target - nums[i];
@@ -67,10 +66,10 @@ Console.WriteLine("Hello, World!");
 //                dict[nums[i]] = i;
 //            }
 //        }
-//        // If no solution found, return an empty array (should not happen per problem statement)
 //        return new int[0];
 //    }
 //}
+
 #endregion
 
 #region Best Time to Buy and Sell
@@ -115,18 +114,20 @@ Console.WriteLine("Hello, World!");
 //Explanation: In this case, no transactions are done and the max profit = 0.
 
 // Time complexity is O(n)
+
+
 //public class Solution
 //{
 //    public int MaxProfit(int[] prices)
 //    {
-
-//        int minPrice = prices[0];
 //        int maxProfit = 0;
+//        int minPrice = prices[0];
+//        for (int i = 0; i < prices.Length; i++)
+//        { 
+//            int profit = prices[i] - minPrice;
+//            maxProfit = Math.Max(maxProfit, profit);
 
-//        foreach (int price in prices)
-//        {
-//            minPrice = Math.Min(minPrice, price);
-//            maxProfit = Math.Max(maxProfit, price - minPrice);
+//            minPrice = Math.Min(minPrice, prices[i]);
 //        }
 //        return maxProfit;
 //    }
@@ -135,6 +136,59 @@ Console.WriteLine("Hello, World!");
 
 
 #endregion
+
+
+#region Contains Duplicate
+
+//Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+
+
+//Example 1:
+
+//Input: nums = [1, 2, 3, 1]
+
+//Output: true
+
+//Explanation:
+
+//The element 1 occurs at the indices 0 and 3.
+
+//Example 2:
+
+//Input: nums = [1, 2, 3, 4]
+
+//Output: false
+
+//Explanation:
+
+//All elements are distinct.
+
+//Example 3:
+
+//Input: nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
+
+//Output: true
+
+
+//public class Solution
+//{
+//    public bool ContainsDuplicate(int[] nums)
+//    {
+//        Dictionary<int, int> Dict = new Dictionary<int, int>();
+//        foreach (int num in nums)
+//        {
+//            if (Dict.ContainsKey(num))
+//            {
+//                return true;
+//            }
+//            Dict[num] = 1;
+//        }
+//        return false;
+//    }
+//}
+#endregion
+
 
 #endregion
 
@@ -198,5 +252,63 @@ Console.WriteLine("Hello, World!");
 
 #endregion
 
+#region Longest Repeating Character Replacement
+
+
+//You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character.
+//You can perform this operation at most k times.
+
+//Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+
+
+//Example 1:
+
+//Input: s = "ABAB", k = 2
+//Output: 4
+//Explanation: Replace the two 'A's with two 'B's or vice versa.
+//Example 2:
+
+//Input: s = "AABABBA", k = 1
+//Output: 4
+//Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+//The substring "BBBB" has the longest repeating letters, which is 4.
+//There may exists other ways to achieve this answer too.
+
+
+
+
+public class Solution
+{
+    public int CharacterReplacement(string s, int k)
+    {
+        int[] charCount = new int[26];
+        int start = 0, maxCount = 0, maxLength = 0;
+
+        for (int end = 0; end < s.Length; end++)
+        {
+            maxCount = Math.Max(maxCount, ++charCount[s[end] - 'A']);
+
+            while (end - start + 1 - maxCount > k)
+            {
+                charCount[s[start] - 'A']--;
+                start++;
+            }
+
+            maxLength = Math.Max(maxLength, end - start + 1);
+        }
+
+        return maxLength;
+    }
+}
+
+
+
+
 #endregion
+
+
+
+#endregion
+
 
