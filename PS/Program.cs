@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Xml.Linq;
+
 Console.WriteLine("Hello, World!");
+
 
 #region Arrays
 
@@ -137,7 +140,6 @@ Console.WriteLine("Hello, World!");
 
 #endregion
 
-
 #region Contains Duplicate
 
 //Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
@@ -187,6 +189,156 @@ Console.WriteLine("Hello, World!");
 //        return false;
 //    }
 //}
+#endregion
+
+#region Running Sum of 1d Array
+//Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+
+//Return the running sum of nums.
+
+
+
+//Example 1:
+
+//Input: nums = [1,2,3,4]
+//Output: [1,3,6,10]
+//Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+//Example 2:
+
+//Input: nums = [1,1,1,1,1]
+//Output: [1,2,3,4,5]
+//Explanation: Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
+//Example 3:
+
+//Input: nums = [3,1,2,10,1]
+//Output: [3,4,6,16,17]Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+
+//Return the running sum of nums.
+
+
+
+//Example 1:
+
+//Input: nums = [1,2,3,4]
+//Output: [1,3,6,10]
+//Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+//Example 2:
+
+//Input: nums = [1,1,1,1,1]
+//Output: [1,2,3,4,5]
+//Explanation: Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
+//Example 3:
+
+//Input: nums = [3,1,2,10,1]
+//Output: [3,4,6,16,17]'
+
+
+//public class Solution
+//{
+//    public int[] RunningSum(int[] nums)
+//    {
+//        ///we need a thing to count max sum and add it to the new array
+//        /// we need a new array 
+//        int maxCount = 0;
+//        int[] sumArr = new int[nums.Length];
+//        for (int i = 0; i < nums.Length; i++)
+//        {
+//            maxCount = nums[i] + maxCount;
+//            sumArr[i] = maxCount;
+//        }
+//        return sumArr;
+
+//    }
+//}
+
+#endregion
+
+#region Pivot Index
+//Given an array of integers nums, calculate the pivot index of this array.
+
+//The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+
+//If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array.
+
+//Return the leftmost pivot index. If no such index exists, return -1.
+
+
+
+//Example 1:
+
+//Input: nums = [1,7,3,6,5,6]
+//Output: 3
+//Explanation:
+//The pivot index is 3.
+//Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11
+//Right sum = nums[4] + nums[5] = 5 + 6 = 11
+//Example 2:
+
+//Input: nums = [1,2,3]
+//Output: -1
+//Explanation:
+//There is no index that satisfies the conditions in the problem statement.
+//Example 3:
+
+//Input: nums = [2,1,-1]
+//Output: 0
+//Explanation:
+//The pivot index is 0.
+//Left sum = 0 (no elements to the left of index 0)
+//Right sum = nums[1] + nums[2] = 1 + -1 = 0Given an array of integers nums, calculate the pivot index of this array.
+
+//The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+
+//If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array.
+
+//Return the leftmost pivot index. If no such index exists, return -1.
+
+
+
+//Example 1:
+
+//Input: nums = [1,7,3,6,5,6]
+//Output: 3
+//Explanation:
+//The pivot index is 3.
+//Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11
+//Right sum = nums[4] + nums[5] = 5 + 6 = 11
+//Example 2:
+
+//Input: nums = [1,2,3]
+//Output: -1
+//Explanation:
+//There is no index that satisfies the conditions in the problem statement.
+//Example 3:
+
+//Input: nums = [2,1,-1]
+//Output: 0
+//Explanation:
+//The pivot index is 0.
+//Left sum = 0 (no elements to the left of index 0)
+//Right sum = nums[1] + nums[2] = 1 + -1 = 0
+
+public class Solution
+{
+    public int PivotIndex(int[] nums)
+    {
+        int totalSum = 0;
+        foreach (int num in nums)
+        {
+            totalSum += num;
+        }
+        int leftSum = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int rightSum = totalSum - leftSum - nums[i];
+            if (leftSum == rightSum)
+            { return i; }
+            leftSum += nums[i];
+
+        }
+        return -1;
+    }
+}
 #endregion
 
 
@@ -278,29 +430,29 @@ Console.WriteLine("Hello, World!");
 
 
 
-public class Solution
-{
-    public int CharacterReplacement(string s, int k)
-    {
-        int[] charCount = new int[26];
-        int start = 0, maxCount = 0, maxLength = 0;
+//public class Solution
+//{
+//    public int CharacterReplacement(string s, int k)
+//    {
+//        int[] charCount = new int[26];
+//        int start = 0, maxCount = 0, maxLength = 0;
 
-        for (int end = 0; end < s.Length; end++)
-        {
-            maxCount = Math.Max(maxCount, ++charCount[s[end] - 'A']);
+//        for (int end = 0; end < s.Length; end++)
+//        {
+//            maxCount = Math.Max(maxCount, ++charCount[s[end] - 'A']);
 
-            while (end - start + 1 - maxCount > k)
-            {
-                charCount[s[start] - 'A']--;
-                start++;
-            }
+//            while (end - start + 1 - maxCount > k)
+//            {
+//                charCount[s[start] - 'A']--;
+//                start++;
+//            }
 
-            maxLength = Math.Max(maxLength, end - start + 1);
-        }
+//            maxLength = Math.Max(maxLength, end - start + 1);
+//        }
 
-        return maxLength;
-    }
-}
+//        return maxLength;
+//    }
+//}
 
 
 
