@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Xml.Linq;
+
+using System.Collections.Generic;
 
 Console.WriteLine("Hello, World!");
 
@@ -318,28 +319,164 @@ Console.WriteLine("Hello, World!");
 //Left sum = 0 (no elements to the left of index 0)
 //Right sum = nums[1] + nums[2] = 1 + -1 = 0
 
-public class Solution
-{
-    public int PivotIndex(int[] nums)
-    {
-        int totalSum = 0;
-        foreach (int num in nums)
-        {
-            totalSum += num;
-        }
-        int leftSum = 0;
-        for (int i = 0; i < nums.Length; i++)
-        {
-            int rightSum = totalSum - leftSum - nums[i];
-            if (leftSum == rightSum)
-            { return i; }
-            leftSum += nums[i];
+//public class Solution
+//{
+//    public int PivotIndex(int[] nums)
+//    {
+//        int totalSum = 0;
+//        foreach (int num in nums)
+//        {
+//            totalSum += num;
+//        }
+//        int leftSum = 0;
+//        for (int i = 0; i < nums.Length; i++)
+//        {
+//            int rightSum = totalSum - leftSum - nums[i];
+//            if (leftSum == rightSum)
+//            { return i; }
+//            leftSum += nums[i];
 
-        }
-        return -1;
-    }
-}
+//        }
+//        return -1;
+//    }
+//}
 #endregion
+
+#region Find the highest altitude
+//There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes. The biker starts his trip on point 0 with altitude equal 0.
+
+//You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i​​​​​​ and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
+
+
+
+//Example 1:
+
+//Input: gain = [-5,1,5,0,-7]
+//Output: 1
+//Explanation: The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.
+//Example 2:
+
+//Input: gain = [-4,-3,-2,-1,4,3,2]
+//Output: 0
+//Explanation: The altitudes are [0,-4,-7,-9,-10,-6,-3,-1]. The highest is 0.
+// There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes. The biker starts his trip on point 0 with altitude equal 0.
+
+//You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i​​​​​​ and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
+
+
+
+//Example 1:
+
+//Input: gain = [-5,1,5,0,-7]
+//Output: 1
+//Explanation: The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.
+//Example 2:
+
+//Input: gain = [-4,-3,-2,-1,4,3,2]
+//Output: 0
+//Explanation: The altitudes are [0,-4,-7,-9,-10,-6,-3,-1]. The highest is 0.
+
+//public class Solution
+//{
+//    public int LargestAltitude(int[] gain)
+//    {
+//        int Counter = 0;
+//        int MaxCount = 0;
+
+//        for (int i = 0; i < gain.Length; i++)
+//        {
+
+//            Counter += gain[i];
+//            MaxCount = Math.Max(MaxCount, Counter);
+//        }
+//        return MaxCount;
+//    }
+//}
+
+#endregion
+
+#region Find the Middle Index of an array  [ Same as Pivot Index]
+//Given a 0-indexed integer array nums, find the leftmost middleIndex (i.e., the smallest amongst all the possible ones).
+
+//A middleIndex is an index where nums[0] + nums[1] + ... + nums[middleIndex-1] == nums[middleIndex+1] + nums[middleIndex+2] + ... + nums[nums.length-1].
+
+//If middleIndex == 0, the left side sum is considered to be 0. Similarly, if middleIndex == nums.length - 1, the right side sum is considered to be 0.
+
+//Return the leftmost middleIndex that satisfies the condition, or -1 if there is no such index.
+
+
+
+//Example 1:
+
+//Input: nums = [2,3,-1,8,4]
+//Output: 3
+//Explanation: The sum of the numbers before index 3 is: 2 + 3 + -1 = 4
+//The sum of the numbers after index 3 is: 4 = 4
+//Example 2:
+
+//Input: nums = [1,-1,4]
+//Output: 2
+//Explanation: The sum of the numbers before index 2 is: 1 + -1 = 0
+//The sum of the numbers after index 2 is: 0
+//Example 3:
+
+//Input: nums = [2,5]
+//Output: -1
+//Explanation: There is no valid middleIndex.Given a 0-indexed integer array nums, find the leftmost middleIndex (i.e., the smallest amongst all the possible ones).
+
+//A middleIndex is an index where nums[0] + nums[1] + ... + nums[middleIndex-1] == nums[middleIndex+1] + nums[middleIndex+2] + ... + nums[nums.length-1].
+
+//If middleIndex == 0, the left side sum is considered to be 0. Similarly, if middleIndex == nums.length - 1, the right side sum is considered to be 0.
+
+//Return the leftmost middleIndex that satisfies the condition, or -1 if there is no such index.
+
+
+
+//Example 1:
+
+//Input: nums = [2,3,-1,8,4]
+//Output: 3
+//Explanation: The sum of the numbers before index 3 is: 2 + 3 + -1 = 4
+//The sum of the numbers after index 3 is: 4 = 4
+//Example 2:
+
+//Input: nums = [1,-1,4]
+//Output: 2
+//Explanation: The sum of the numbers before index 2 is: 1 + -1 = 0
+//The sum of the numbers after index 2 is: 0
+//Example 3:
+
+//Input: nums = [2,5]
+//Output: -1
+//Explanation: There is no valid middleIndex.
+
+
+
+//public class Solution
+//{
+//    public int FindMiddleIndex(int[] nums)
+//    {
+//        int totalSum = 0;
+//        foreach (int num in nums)
+//        {
+//            totalSum += num;
+//        }
+//        int leftSum = 0;
+//        for (int i = 0; i < nums.Length; i++)
+//        {
+//            int rightSum = totalSum - leftSum - nums[i];
+//            if (leftSum == rightSum)
+//            {
+//                return i;
+//            }
+//            leftSum += nums[i];
+//        }
+//        return -1;
+//    }
+//}
+
+#endregion
+
 
 
 #endregion
@@ -459,7 +596,52 @@ public class Solution
 
 #endregion
 
+#region Maximum Number of Words Found in Sentences
+//A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
 
+//You are given an array of strings sentences, where each sentences[i] represents a single sentence.
+
+//Return the maximum number of words that appear in a single sentence.
+
+
+
+//Example 1:
+
+//Input: sentences = ["alice and bob love leetcode", "i think so too", "this is great thanks very much"]
+//Output: 6
+//Explanation:
+//-The first sentence, "alice and bob love leetcode", has 5 words in total.
+//- The second sentence, "i think so too", has 4 words in total.
+//- The third sentence, "this is great thanks very much", has 6 words in total.
+//Thus, the maximum number of words in a single sentence comes from the third sentence, which has 6 words.
+//Example 2:
+
+//Input: sentences = ["please wait", "continue to fight", "continue to win"]
+//Output: 3
+//Explanation: It is possible that multiple sentences contain the same number of words. 
+//In this example, the second and third sentences (underlined) have the same number of words.
+
+//public class Solution
+//{
+//    public int MostWordsFound(string[] sentences)
+//    {
+//        int maxCount = 0;
+//        int count = 0;
+//        char[] separators = [' '];
+
+//        for (int i = 0; i < sentences.Length; i++)
+//        {
+//            string[] newArr = sentences[i].Split(separators);
+//            count = newArr.Count();
+//            maxCount = Math.Max(count, maxCount);
+//        }
+//        return maxCount;
+
+//    }
+//}
+
+
+#endregion 
 
 #endregion
 
