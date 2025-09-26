@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Security.Cryptography;
 
 Console.WriteLine("Hello, World!");
 
@@ -477,11 +480,378 @@ Console.WriteLine("Hello, World!");
 
 #endregion
 
+#region Kids With the Greatest Number of Candies
 
+
+//There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+
+//Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+
+//Note that multiple kids can have the greatest number of candies.
+
+
+
+//Example 1:
+
+//Input: candies = [2,3,5,1,3], extraCandies = 3
+//Output: [true,true,true,false,true] 
+//Explanation: If you give all extraCandies to:
+//- Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+//- Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+//- Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+//- Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+//- Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+//Example 2:
+
+//Input: candies = [4,2,1,1,2], extraCandies = 1
+//Output: [true,false,false,false,false] 
+//Explanation: There is only 1 extra candy.
+//Kid 1 will always have the greatest number of candies, even if a different kid is given the extra candy.
+//Example 3:
+
+//Input: candies = [12,1,12], extraCandies = 10
+//Output: [true,false,true]
+// There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+
+//Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+
+//Note that multiple kids can have the greatest number of candies.
+
+
+
+//Example 1:
+
+//Input: candies = [2,3,5,1,3], extraCandies = 3
+//Output: [true,true,true,false,true] 
+//Explanation: If you give all extraCandies to:
+//- Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+//- Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+//- Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+//- Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+//- Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+//Example 2:
+
+//Input: candies = [4,2,1,1,2], extraCandies = 1
+//Output: [true,false,false,false,false] 
+//Explanation: There is only 1 extra candy.
+//Kid 1 will always have the greatest number of candies, even if a different kid is given the extra candy.
+//Example 3:
+
+//Input: candies = [12,1,12], extraCandies = 10
+//Output: [true,false,true]
+
+//public class Solution
+//{
+//    public IList<bool> KidsWithCandies(int[] candies, int extraCandies)
+//    {
+//        int count = 0;
+//        int maxCount = 0;
+//        bool[] newArr = new bool[candies.Length];
+//        int maxArr = candies.Max();
+//        for (int i = 0; i < candies.Length; i++)
+//        {
+//            count = candies[i] + extraCandies;
+//            if (count >= maxArr)
+//            {
+//                newArr[i] = true;
+//            }
+//            else
+//            {
+//                newArr[i] = false;
+//            }
+//        }
+//        return newArr;
+//    }
+//}
+#endregion
+
+#region Array Concatentation
+//public class Solution
+//{
+//    public int[] GetConcatenation(int[] nums)
+//    {
+//        int[] newArr = nums.Concat(nums).ToArray();
+//        return newArr;
+//    }
+//}
+
+//public class Solution
+//{
+//    public int[] GetConcatenation(int[] nums)
+//    {
+//        int n = nums.Length;
+//        int[] ans = new int[2 * n];
+
+//        for (int i = 0; i < n; i++)
+//        {
+//            ans[i] = nums[i];
+//            ans[i + n] = nums[i];
+//        }
+
+//        return ans;
+//    }
+
+//}
+#endregion
+
+#region  Shuffle the Array
+
+//Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+
+//Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+
+
+
+//Example 1:
+
+//Input: nums = [2,5,1,3,4,7], n = 3
+//Output: [2,3,5,4,1,7] 
+//Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+//Example 2:
+
+//Input: nums = [1,2,3,4,4,3,2,1], n = 4
+//Output: [1,4,2,3,3,2,4,1]
+//Example 3:
+
+//Input: nums = [1,1,2,2], n = 2
+//Output: [1,2,1,2]
+// Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+
+//Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+
+
+
+//Example 1:
+
+//Input: nums = [2,5,1,3,4,7], n = 3
+//Output: [2,3,5,4,1,7] 
+//Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+//Example 2:
+
+//Input: nums = [1,2,3,4,4,3,2,1], n = 4
+//Output: [1,4,2,3,3,2,4,1]
+//Example 3:
+
+//Input: nums = [1,1,2,2], n = 2
+//Output: [1,2,1,2]
+
+
+//public class Solution
+//{
+//    public int[] Shuffle(int[] nums, int n)
+//    {
+//        int[] newArr = new int[2 * n];
+//        int j = 0;
+
+//        for (int i = 0; i < n; i++)
+//        {
+//            newArr[j++] = nums[i];
+//            newArr[j++] = nums[i + n];
+//        }
+
+//        return newArr;
+//    }
+
+//}
 
 #endregion
 
+#region Number of Good Pairs
 
+//Given an array of integers nums, return the number of good pairs.
+
+//A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+
+
+
+//Example 1:
+
+//Input: nums = [1,2,3,1,1,3]
+//Output: 4
+//Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+//Example 2:
+
+//Input: nums = [1,1,1,1]
+//Output: 6
+//Explanation: Each pair in the array are good.
+//Example 3:
+
+//Input: nums = [1,2,3]
+//Output: 01512. Number of Good Pairs
+//Easy
+//Topics
+//premium lock icon
+//Companies
+//Hint
+//Given an array of integers nums, return the number of good pairs.
+
+//A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+
+
+
+//Example 1:
+
+//Input: nums = [1,2,3,1,1,3]
+//Output: 4
+//Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+//Example 2:
+
+//Input: nums = [1,1,1,1]
+//Output: 6
+//Explanation: Each pair in the array are good.
+//Example 3:
+
+//Input: nums = [1,2,3]
+//Output: 0
+
+//public class Solution
+//{
+//    public int NumIdenticalPairs(int[] nums)
+//    {
+//        int count = 0;
+//        var dict = new Dictionary<int, int>();
+//        for (int i = 0; i < nums.Length; i++)
+//        {
+//            if (dict.ContainsKey(nums[i]))
+//            {
+//                count += dict[nums[i]];
+//                dict[nums[i]]++;
+//            }
+//            else
+//            {
+//                dict[nums[i]] = 1;
+//            }
+//        }
+//        return count;
+//    }
+//}
+#endregion
+
+#region Find Value After Performing Operation
+
+//There is a programming language with only four operations and one variable X:
+
+//++X and X++ increments the value of the variable X by 1.
+//--X and X-- decrements the value of the variable X by 1.
+//Initially, the value of X is 0.
+
+//Given an array of strings operations containing a list of operations, return the final value of X after performing all the operations.
+
+
+
+//Example 1:
+
+//Input: operations = ["--X", "X++", "X++"]
+//Output: 1
+//Explanation: The operations are performed as follows:
+//Initially, X = 0.
+//--X: X is decremented by 1, X = 0 - 1 = -1.
+//X++: X is incremented by 1, X = -1 + 1 = 0.
+//X++: X is incremented by 1, X = 0 + 1 = 1.
+//Example 2:
+
+//Input: operations = ["++X", "++X", "X++"]
+//Output: 3
+//Explanation: The operations are performed as follows:
+//Initially, X = 0.
+//++X: X is incremented by 1, X = 0 + 1 = 1.
+//++X: X is incremented by 1, X = 1 + 1 = 2.
+//X++: X is incremented by 1, X = 2 + 1 = 3.
+//Example 3:
+
+//Input: operations = ["X++", "++X", "--X", "X--"]
+//Output: 0
+//Explanation: The operations are performed as follows:
+//Initially, X = 0.
+//X++: X is incremented by 1, X = 0 + 1 = 1.
+//++X: X is incremented by 1, X = 1 + 1 = 2.
+//--X: X is decremented by 1, X = 2 - 1 = 1.
+//X--: X is decremented by 1, X = 1 - 1 = 0.
+
+
+//public class Solution
+//{
+//    public int FinalValueAfterOperations(string[] operations)
+//    {
+//        int x = 0;
+//        for (int i = 0; i < operations.Length; i++)
+//        {
+//            if (operations[i] == "--X")
+//                --x;
+//            else if (operations[i] == "++X")
+//                ++x;
+//            else if (operations[i] == "X++")
+//                x++;
+//            else if (operations[i] == "X--")
+//                x--;
+//        }
+//        return x;
+//    }
+//}
+#endregion
+
+#region Build Array from Permutation
+
+//Given a zero-based permutation nums (0-indexed), build an array ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
+
+//A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1 (inclusive).
+
+
+
+//Example 1:
+
+//Input: nums = [0,2,1,5,3,4]
+//Output: [0,1,2,4,5,3]
+//Explanation: The array ans is built as follows: 
+//ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+//    = [nums[0], nums[2], nums[1], nums[5], nums[3], nums[4]]
+//    = [0,1,2,4,5,3]
+//Example 2:
+
+//Input: nums = [5,0,1,2,3,4]
+//Output: [4,5,0,1,2,3]
+//Explanation: The array ans is built as follows:
+//ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+//    = [nums[5], nums[0], nums[1], nums[2], nums[3], nums[4]]Given a zero-based permutation nums (0-indexed), build an array ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
+
+//A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1 (inclusive).
+
+
+
+//Example 1:
+
+//Input: nums = [0,2,1,5,3,4]
+//Output: [0,1,2,4,5,3]
+//Explanation: The array ans is built as follows: 
+//ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+//    = [nums[0], nums[2], nums[1], nums[5], nums[3], nums[4]]
+//    = [0,1,2,4,5,3]
+//Example 2:
+
+//Input: nums = [5,0,1,2,3,4]
+//Output: [4,5,0,1,2,3]
+//Explanation: The array ans is built as follows:
+//ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+//    = [nums[5], nums[0], nums[1], nums[2], nums[3], nums[4]]
+
+
+
+//public class Solution
+//{
+//    public int[] BuildArray(int[] nums)
+//    {
+//        int[] newArr = new int[nums.Length];
+//        for (int i = 0; i < nums.Length; i++)
+//        {
+//            newArr[i] = nums[nums[i]];
+//        }
+//        return newArr;
+//    }
+//}
+#endregion
+
+#region How Many Numbers Are Smaller Than the Current Number
+#endregion
 
 #region Strings
 
@@ -641,7 +1011,7 @@ Console.WriteLine("Hello, World!");
 //}
 
 
-#endregion 
+#endregion
 
 #endregion
 
