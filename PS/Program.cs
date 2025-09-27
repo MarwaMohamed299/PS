@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Security.Cryptography;
 
@@ -952,48 +953,6 @@ Console.WriteLine("Hello, World!");
 #endregion
 
 
-#region Length of Last Word
-
-
-//Given a string s consisting of words and spaces, return the length of the last word in the string.
-
-//A word is a maximal substring consisting of non-space characters only.
-
-
-
-//Example 1:
-
-//Input: s = "Hello World"
-//Output: 5
-//Explanation: The last word is "World" with length 5.
-//Example 2:
-
-//Input: s = "   fly me   to   the moon  "
-//Output: 4
-//Explanation: The last word is "moon" with length 4.
-//Example 3:
-
-//Input: s = "luffy is still joyboy"
-//Output: 6
-//Explanation: The last word is "joyboy" with length 6.
-
-
-//public class Solution
-//{
-//    public int LengthOfLastWord(string s)
-//    {
-
-
-//        string strimmed = s.Trim();
-//        string[] words = strimmed.Split(' ');
-//        string lastWord = words[words.Length - 1];
-
-
-//        return lastWord.Count();
-
-//    }
-//}
-#endregion
 
 #endregion
 
@@ -1156,6 +1115,134 @@ Console.WriteLine("Hello, World!");
 
 
 #endregion
+
+#region Length of Last Word
+
+
+//Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+//A word is a maximal substring consisting of non-space characters only.
+
+
+
+//Example 1:
+
+//Input: s = "Hello World"
+//Output: 5
+//Explanation: The last word is "World" with length 5.
+//Example 2:
+
+//Input: s = "   fly me   to   the moon  "
+//Output: 4
+//Explanation: The last word is "moon" with length 4.
+//Example 3:
+
+//Input: s = "luffy is still joyboy"
+//Output: 6
+//Explanation: The last word is "joyboy" with length 6.
+
+
+//public class Solution
+//{
+//    public int LengthOfLastWord(string s)
+//    {
+
+
+//        string strimmed = s.Trim();
+//        string[] words = strimmed.Split(' ');
+//        string lastWord = words[words.Length - 1];
+
+
+//        return lastWord.Count();
+
+//    }
+//}
+#endregion
+
+#region Reverse string
+//Write a function that reverses a string. The input string is given as an array of characters s.
+
+//You must do this by modifying the input array in-place with O(1) extra memory.
+
+
+
+//Example 1:
+
+//Input: s = ["h", "e", "l", "l", "o"]
+//Output: ["o", "l", "l", "e", "h"]
+//Example 2:
+
+//Input: s = ["H", "a", "n", "n", "a", "h"]
+//Output: ["h", "a", "n", "n", "a", "H"]
+
+
+//public class Solution
+//{
+//    public void ReverseString(char[] s)
+//    {
+//        int left = 0, right = s.Length - 1;
+
+//        while (left < right)
+//        {
+//            char temp = s[left];
+//            s[left] = s[right];
+//            s[right] = temp;
+
+//            left++;
+//            right--;
+//        }
+//    }
+//}
+
+
+#endregion
+
+#region Valid Palindrome
+
+//A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+//Given a string s, return true if it is a palindrome, or false otherwise.
+
+
+
+//Example 1:
+
+//Input: s = "A man, a plan, a canal: Panama"
+//Output: true
+//Explanation: "amanaplanacanalpanama" is a palindrome.
+//Example 2:
+
+//Input: s = "race a car"
+//Output: false
+//Explanation: "raceacar" is not a palindrome.
+//Example 3:
+
+//Input: s = " "
+//Output: true
+//Explanation: s is an empty string "" after removing non-alphanumeric characters.
+//Since an empty string reads the same forward and backward, it is a palindrome.
+
+//public class Solution
+//{
+//    public bool IsPalindrome(string s)
+//    {
+//        var chars = s.ToLower().Where(char.IsLetterOrDigit).ToArray();
+//        int l = 0;
+//        int r = chars.Length - 1;
+//        while (l < r)
+//        {
+//            if (chars[l] != chars[r])
+//            { return false; }
+//            l++;
+//            r--;
+//        }
+//        return true;
+//    }
+//}
+
+#endregion
+
+
 
 #endregion
 
