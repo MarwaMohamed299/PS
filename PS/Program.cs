@@ -1,12 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
-using System.Security.Cryptography;
-
 Console.WriteLine("Hello, World!");
 
 
@@ -182,16 +175,33 @@ Console.WriteLine("Hello, World!");
 //{
 //    public bool ContainsDuplicate(int[] nums)
 //    {
-//        Dictionary<int, int> Dict = new Dictionary<int, int>();
-//        foreach (int num in nums)
-//        {
-//            if (Dict.ContainsKey(num))
-//            {
-//                return true;
-//            }
-//            Dict[num] = 1;
-//        }
-//        return false;
+
+//        //Solution 1
+
+//        //Dictionary<int, int> Dict = new Dictionary<int, int>();
+//        //foreach (int num in nums)
+//        //{
+//        //    if (Dict.ContainsKey(num))
+//        //    {
+//        //        return true;
+//        //    }
+//        //    Dict[num] = 1;
+//        //}
+//        //return false;
+
+         
+//        // Solution 2
+//        //HashSet<int> set = new HashSet<int>();
+//        //foreach (int num in nums)
+//        //{
+//        //    if (set.Contains(num))
+//        //    {
+//        //        return true;
+//        //    }
+//        //    set.Add(num);
+
+//        //}
+//        //return false;
 //    }
 //}
 #endregion
